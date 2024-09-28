@@ -1,10 +1,11 @@
 
 import './App.css';
+import AddItem from './components/AddItem';
 
 function App() {
   return (
     <div className="App">
-      hello world
+      <AddItem />
     </div>
   );
 }
