@@ -1,73 +1,38 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addItem } from '../redux/itemSlice';
 
-const AddItem = () => {
-    const [item, setItem] = useState({
-        name: '',
-        price: '',
-        ingredients: '',
-        category: ''
-    });
-
+const AddItemForm = () => {
+    const [itemData, setItemData] = useState({ name: '', category: '' });
+    const [file, setFile] = useState(null); // To handle image file
     const dispatch = useDispatch();
-    const { status, error } = useSelector((state) => state.items);
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setItem({
-            ...item,
-            [name]: value
-        });
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Split ingredients by commas to create an array
-        const formattedItem = {
-            ...item,
-            ingredients: item.ingredients.split(',').map((ing) => ing.trim())
-        };
-        // Dispatch the addItem thunk to add an item to Firebase
-        dispatch(addItem(formattedItem));
+        dispatch(addItem({ item: itemData, file }));
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <input 
                 type="text" 
-                name="name" 
-                placeholder="Name" 
-                value={item.name} 
-                onChange={handleChange} 
+                placeholder="Item Name" 
+                value={itemData.name} 
+                onChange={(e) => setItemData({ ...itemData, name: e.target.value })} 
             />
             <input 
                 type="text" 
-                name="price" 
-                placeholder="Price" 
-                value={item.price} 
-                onChange={handleChange} 
-            />
-            <input 
-                type="text" 
-                name="ingredients" 
-                placeholder="Ingredients (comma separated)" 
-                value={item.ingredients} 
-                onChange={handleChange} 
-            />
-            <input 
-                type="text" 
-                name="category" 
                 placeholder="Category" 
-                value={item.category} 
-                onChange={handleChange} 
+                value={itemData.category} 
+                onChange={(e) => setItemData({ ...itemData, category: e.target.value })} 
             />
-            <button type="submit" disabled={status === 'loading'}>
-                {status === 'loading' ? 'Adding...' : 'Add Item'}
-            </button>
-            {status === 'failed' && <p>Error: {error}</p>}
+            <input 
+                type="file" 
+                onChange={(e) => setFile(e.target.files[0])} // Select file to upload
+            />
+            <button type="submit">Add Item</button>
         </form>
     );
 };
 
-export default AddItem;
+export default AddItemForm;

@@ -18,10 +18,11 @@ export const fetchItemsByCategory = createAsyncThunk("items/fetchItemsByCategory
     return items;
 });
 
-export const addItem = createAsyncThunk("items/addItem", async (item) => {
-    const itemId = await addFirebaseItem(item);
+export const addItem = createAsyncThunk("items/addItem", async ({ item, file }) => {
+    const itemId = await addFirebaseItem(item, file);
     return itemId;
 });
+
 
 // Items slice
 const itemsSlice = createSlice({
@@ -79,8 +80,8 @@ const itemsSlice = createSlice({
         });
         builder.addCase(addItem.fulfilled, (state, action) => {
             state.status = 'succeeded';
-            state.items.push({ id: action.payload, ...state.item });
-        });
+            state.items.push(action.payload);
+        });        
         builder.addCase(addItem.rejected, (state, action) => {
             state.status = 'failed';
             state.error = action.error.message;
