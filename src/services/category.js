@@ -1,10 +1,10 @@
 import { getDoc , getDocs , addDoc } from "firebase/firestore";
-import { CategoryCollectionRef } from "../constants";
+import { categoryCollectionRef } from "../constants";
 
 
 export const getCategories = async () => {
     try {
-        const categories = await getDocs(CategoryCollectionRef);
+        const categories = await getDocs(categoryCollectionRef);
         const filteredData = categories.docs.map((doc) => ({
             ...doc.data(),
             id: doc.id
@@ -17,7 +17,7 @@ export const getCategories = async () => {
 
 export const getCategoryById = async (id) => {
     try {
-        const categoryDoc = await getDoc(CategoryCollectionRef, id);
+        const categoryDoc = await getDoc(categoryCollectionRef, id);
         if (categoryDoc.exists()) {
             return { id: categoryDoc.id, ...categoryDoc.data() };
         } else {
@@ -30,7 +30,7 @@ export const getCategoryById = async (id) => {
 
 export const addCatagory = async (category) => {
     try {
-        const categoryRef = await addDoc(CategoryCollectionRef, category);
+        const categoryRef = await addDoc(categoryCollectionRef, category);
         return categoryRef.id;
     } catch (err) {
         console.log(err);

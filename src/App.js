@@ -1,15 +1,14 @@
 import './App.css';
-import Category from './components/Category';
+import AddItemForm from './components/AddItem';
 import Intro from './components/Intro';
-import ItemList from './components/ItemList';
+
 
 function App() {
 
   return (
     <div className="App">
       <Intro />
-      <Category />
-      <ItemList />
+      <AddItemForm />
     </div>
   );
 }

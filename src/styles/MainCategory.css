@@ -1,0 +1,31 @@
+.category-container {
+    width: 100%; 
+    overflow-x: auto; 
+    white-space: nowrap; 
+    margin: 10px 0; 
+    background-color: rgb(37, 36, 36);
+    border-radius: 10px;
+  }
+  
+  .main-category-list {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .category-item {
+    padding: 10px 20px; 
+    color: white;
+    margin-right: 10px; 
+    border-radius: 5px; 
+    white-space: nowrap; 
+    flex-shrink: 0; 
+  }
+  
+  .category-item:hover {
+    background-color: #e0e0e0;
+    cursor: pointer; 
+  }
+  

@@ -1,0 +1,106 @@
+/* AddItemForm.css */
+
+.add-item-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-item-name,
+.input-item-category,
+.input-price,
+.input-file-upload,
+.select-category,
+.select-main-category,
+.input-new-category,
+.input-new-ingredient {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.input-item-name:focus,
+.input-item-category:focus,
+.input-price:focus,
+.select-category:focus,
+.select-main-category:focus,
+.input-new-category:focus,
+.input-new-ingredient:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.add-category-container,
+.add-ingredient-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.btn-add-item {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-item:hover {
+    background-color: #0056b3;
+}
+
+.btn-add-category {
+    padding: 10px;
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-category:hover {
+    background-color: #218838; /* Darker green */
+}
+
+.btn-add-ingredient {
+    padding: 10px;
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-ingredient:hover {
+    background-color: #218838; /* Darker green */
+}
+
+/* Styles for the multi-select dropdown */
+.select-ingredients {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Additional styles for focus states */
+.select-ingredients:focus {
+    border-color: #007bff;
+    outline: none;
+}
