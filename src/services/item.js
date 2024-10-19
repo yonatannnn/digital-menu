@@ -1,4 +1,4 @@
-import { getDocs, getDoc, doc, query, where, addDoc } from 'firebase/firestore';
+import { getDocs, getDoc, doc, query, where, addDoc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Import Firebase Storage functions
 import { ItemCollectionRef } from '../constants'; // Ensure you have a Firebase storage reference
 import { storage } from '../config/firebase';
@@ -77,3 +77,25 @@ export const addItem = async (item, file) => {
     }
 };
 
+export const deleteItem = async (id) => {
+    try {
+        const itemDocRef = doc(ItemCollectionRef, id);
+        await deleteDoc(itemDocRef);
+        console.log(`Item with id ${id} deleted successfully.`);
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+};
+
+export const updateItem = async (id, updatedItem) => {
+    try {
+        const itemDocRef = doc(ItemCollectionRef, id);
+        await updateDoc(itemDocRef, { price: updatedItem.price });
+
+        console.log(`Item with id ${id} updated successfully.`);
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+};
